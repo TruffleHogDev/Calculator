@@ -41,8 +41,14 @@ function reducer(state, { type, payload }) {
       }
 
     case ACTIONS.CHOOSE_OPERATION:
+        /*Allows you to start empty equations with an implied 0 if you input an operation*/
       if (state.currentOperand == null && state.previousOperand == null) {
-        return state
+        return {
+          ...state,
+          operation: payload.operation,
+          previousOperand: `${'0'}`,
+          currentOperand: null
+        }
       }
 
       /*Allows updating of operands if you misinput*/
